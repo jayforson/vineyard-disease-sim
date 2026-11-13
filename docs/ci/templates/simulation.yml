@@ -1,0 +1,19 @@
+name: simulation smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  camera:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t vineyard-disease-sim:dev .
+      - run: bash scripts/run-container.sh python simulation/generate_world.py
+      - run: bash scripts/run-container.sh python scripts/sim_smoke.py --timeout 120
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gazebo-camera-smoke
+          path: runs/sim-smoke/

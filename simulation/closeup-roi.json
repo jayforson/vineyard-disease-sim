@@ -1,0 +1,8 @@
+{
+  "image_width": 640,
+  "image_height": 480,
+  "normalized": false,
+  "rois": [
+    {"id": "closeup_center", "x": 160, "y": 80, "width": 320, "height": 320}
+  ]
+}

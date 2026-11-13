@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vineyard-disease-sim"
+version = "0.1.0"
+description = "Gazebo vineyard fixtures and CPU-first grape-leaf symptom screening"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = ["pillow>=10,<12"]
+
+[project.scripts]
+vineyard-disease = "vineyard_disease.cli:main"
+
+[project.optional-dependencies]
+ml = ["torch>=2.6,<3", "transformers>=4.46,<5", "numpy>=1.26,<2"]
+dev = ["pytest>=8,<9", "ruff>=0.9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
